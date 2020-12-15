@@ -1,7 +1,7 @@
 from pyXSteam.XSteam import XSteam
 stm = XSteam(XSteam.UNIT_SYSTEM_MKS)
 print(stm.h_pt(30,250))
-
+##moro
 
 ##Input arvot##
 qm=float(input('Polttoaineen massavirta [kg/s]:'))
