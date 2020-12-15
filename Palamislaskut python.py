@@ -9,9 +9,7 @@
 
 lkm=int(input('Polttoaineiden määrä: '))
 
-a=[]
 b = {}
-
 
 for x in range(lkm):
     y = x+1
@@ -35,26 +33,61 @@ for x in range(lkm):
     b[f'{y}.nCl'] = nCl
     LHVar=float(input('Lämpöarvo saapumistilassa [MJ/kg]:'))
     b[f'{y}.LHVar'] = LHVar
-    
+
+
+c=[]
+for i in range(lkm):
+    osuus = b[f'{i+1}.osuus']
+    kosteus = b[f'{i+1}.kosteus']
+    kuiva = (osuus/100)*(1-(kosteus/100))
+    c.append(kuiva)
+
+kuivapa=sum(c)
+
+k=[]
+t=[]
+C=[]
+H2=[]
+O2=[]
+N2=[]
+S=[]
+Cl=[]
+l=[]
 
 for i in range(lkm):
-    osuus += b[f'{i+1}.osuus']
+    osuus = b[f'{i+1}.osuus']
+    kosteus = b[f'{i+1}.kosteus']
+    kuiva = (osuus/100)*(1-(kosteus/100))
+    osuusk = kuiva/kuivapa
+    kosteus=b[f'{y}.kosteus']*(osuus/100)
+    k.append(kosteus)
+    LHVar=b[f'{i+1}.LHVar']*(osuus/100)
+    l.append(LHVar)
+    nC = b[f'{i+1}.nC']*osuusk
+    C.append(nC)
+    nH2 = b[f'{i+1}.nH2']*osuusk
+    H2.append(nH2)
+    nO2 = b[f'{i+1}.nO2']*osuusk
+    O2.append(nO2)
+    nN2 = b[f'{i+1}.nN2']*osuusk
+    N2.append(nN2)
+    nS = b[f'{i+1}.nS']*osuusk
+    S.append(nS)
+    nCl =  b[f'{i+1}.nCl']*osuusk
+    Cl.append(nCl)
+    tuhka =  b[f'{i+1}.tuhka']*osuusk
+    t.append(tuhka)
     
+kosteus=sum(k)   
+nC=sum(C)
+nH2=sum(H2)
+nO2=sum(O2) 
+nN2=sum(N2)
+nS=sum(S)
+nCl=sum(Cl)
+tuhka=sum(t)
+LHVar=sum(l)
 
-print(osuus)
-        
-
-    
-    
-
-
-
-
-#kuivapa=osuus*(1-kosteus)
-
-#print(a)
-#print(a[1])
-print('valmis')
 
 ##O2sk=float(input('Kuivan savukaasun happipitoisuus:'))
 ##ilmankosteus=float(input('ilman kosteus [kgH2O/kgilmaa]:'))
